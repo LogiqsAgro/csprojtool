@@ -24,10 +24,10 @@ pool:
 steps:
 - script: |
     echo $IMAGENAME $RUSTUP_TOOLCHAIN
-    condition: ne( variables['Agent.OS'], 'Windows_NT' )
-    displayName: 'Non-Windows script'
+  condition: ne( variables['Agent.OS'], 'Windows_NT' )
+  displayName: 'Non-Windows script'
 
 - script: |
     echo %IMAGENAME% %RUSTUP_TOOLCHAIN%
-    condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
   displayName: 'Windows script'
