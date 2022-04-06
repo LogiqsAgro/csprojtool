@@ -3,17 +3,23 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- azure-ci-poc
+#trigger:
+#- azure-ci-poc
 
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  steps:
+  - scripts:
+      curl https://sh.rustup.rs -sSf | sh -s -- -y
+      echo "##vso[task.setvariable variable=PATH;]$PATH:$HOME/.cargo/bin"      
+    displayName: Install rust
+  - script: cargo build --all
+    displayName: Cargo build
+  - script: cargo test --all
+    displayName: Cargo test
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
+#- script: |
+    #echo Add other tasks to build, test, and deploy your project.
+    #echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
