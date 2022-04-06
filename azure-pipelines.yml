@@ -9,7 +9,7 @@
 pool:
   vmImage: ubuntu-latest
 
-  steps:
+steps:
   - scripts:
       curl https://sh.rustup.rs -sSf | sh -s -- -y
       echo "##vso[task.setvariable variable=PATH;]$PATH:$HOME/.cargo/bin"      
